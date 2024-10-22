@@ -130,6 +130,7 @@ def parse_args():
     config["BuildThumbprint"] = args.build_thumbprint_file.read().strip()
 
   config["MicaDevice"] = config["DeviceName"]
+  config["MicaDesc"] = config["BuildDesc"]
 
   override_config(config)
 
@@ -222,7 +223,7 @@ def generate_build_info(args):
       print(f"ro.build.display.id?={config['BuildId']} {config['BuildKeys']}")
   else:
     # Non-user builds should show detailed build information (See build desc above)
-    print(f"ro.build.display.id?={config['BuildDesc']}")
+    print(f"ro.build.display.id?={config['MicaDesc']}")
   print(f"ro.build.version.incremental={config['BuildNumber']}")
   print(f"ro.build.version.sdk={config['Platform_sdk_version']}")
   print(f"ro.build.version.sdk_full={config['Platform_sdk_version_full']}")
