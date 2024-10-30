@@ -132,6 +132,9 @@ def parse_args():
   config["MicaDevice"] = config["DeviceName"]
   config["MicaDesc"] = config["BuildDesc"]
 
+  if config["BuildNumber"].startswith("eng."):
+    config["BuildNumber"] = config["DateUtc"]
+
   override_config(config)
 
   append_additional_system_props(args)
