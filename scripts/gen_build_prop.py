@@ -221,9 +221,9 @@ def generate_build_info(args):
 
     # Dev. branches should have DISPLAY_BUILD_NUMBER set
     if config["DisplayBuildNumber"]:
-      print(f"ro.build.display.id?={config['BuildId']}.{config['BuildNumber']} {config['BuildKeys']}")
-    else:
       print(f"ro.build.display.id?={config['BuildId']} {config['BuildKeys']}")
+    else:
+      print(f"ro.build.display.id?={config['BuildId']}")
   else:
     # Non-user builds should show detailed build information (See build desc above)
     print(f"ro.build.display.id?={config['MicaDesc']}")
