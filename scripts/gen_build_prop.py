@@ -227,8 +227,12 @@ def generate_build_info(args):
     else:
       print(f"ro.build.display.id?={config['BuildId']}")
   else:
-    # Non-user builds should show detailed build information (See build desc above)
-    print(f"ro.build.display.id?={config['MicaDesc']}")
+    # For userdebug: only show BuildId + BuildKeys
+    if config["BuildVariant"] == "userdebug":
+        print(f"ro.build.display.id?={config['BuildId']} {config['BuildKeys']}")
+    else:
+        # eng builds keep detailed info
+        print(f"ro.build.display.id?={config['MicaDesc']}")
   print(f"ro.build.version.incremental={config['BuildNumber']}")
   print(f"ro.build.version.sdk={config['Platform_sdk_version']}")
   print(f"ro.build.version.sdk_full={config['Platform_sdk_version_full']}")
